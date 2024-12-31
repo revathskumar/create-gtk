@@ -1,14 +1,20 @@
 {
   "name": "create-gtk",
   "version": "0.0.2",
-  "description": "## Setup",
+  "description": "npm initializer for gtk apps using gjs",
   "main": "index.js",
   "type": "module",
   "bin": "bin/create-gtk",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "initializer",
+    "gtk",
+    "gtk4",
+    "gjs",
+    "gnome"
+  ],
   "author": "Revath S Kumar <rsk@revathskumar.com> (http://blog.revathskumar.com/)",
   "license": "MIT",
   "dependencies": {
