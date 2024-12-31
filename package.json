@@ -1,0 +1,16 @@
+{
+  "name": "create-gtk",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Revath S Kumar <rsk@revathskumar.com> (http://blog.revathskumar.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^3.0.1"
+  }
+}

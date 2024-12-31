@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gjs -m "dist/index.js"
