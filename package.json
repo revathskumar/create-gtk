@@ -1,6 +1,6 @@
 {
   "name": "create-gtk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "npm initializer for gtk apps using gjs",
   "main": "index.js",
   "type": "module",
