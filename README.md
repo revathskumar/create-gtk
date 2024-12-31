@@ -13,6 +13,12 @@ or
 npm create gtk@latest <project name>
 ```
 
+## TODO
+
+* generate meson build file
+* generate desktop file and metadata
+* generate basic css file
+
 ## License
 
 [MIT](/LICENSE)
