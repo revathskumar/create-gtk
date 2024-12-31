@@ -61,6 +61,15 @@ const updateSrcIndex = (projectDir, projectName) => {
 
   fs.writeFileSync(`${projectDir}/src/index.ts`, content);
 };
+const updateMainWindow = (projectDir, projectName) => {
+  const srcIndex = fs.readFileSync(`${projectDir}/src/MainWindow.ts`, "utf-8");
+  const content = srcIndex
+    .replaceAll("<user>", process.env.USER)
+    .replaceAll("<name>", projectName)
+    .replaceAll("<year>", new Date().getFullYear());
+
+  fs.writeFileSync(`${projectDir}/src/MainWindow.ts`, content);
+};
 
 export default function () {
   if (!name) {
@@ -97,6 +106,7 @@ export default function () {
     "esbuild.js",
     "tsconfig.json",
     "src/MainWindow.ts",
+    "src/MenuButton.ts",
     "src/index.ts",
     "bin/bin",
   ].forEach((fileName) => {
@@ -111,6 +121,7 @@ export default function () {
   updatePackageJSON(projectDir);
   updateNameInReadme(projectDir, name);
   updateSrcIndex(projectDir, name);
+  updateMainWindow(projectDir, name);
   updateLicense(projectDir);
   execSync("git init");
   console.log(`${name} project created`);
