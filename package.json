@@ -15,6 +15,14 @@
     "gjs",
     "gnome"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revathskumar/create-gtk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/revathskumar/create-gtk/issues"
+  },
+  "homepage": "https://github.com/revathskumar/create-gtk#readme",
   "author": "Revath S Kumar <rsk@revathskumar.com> (http://blog.revathskumar.com/)",
   "license": "MIT",
   "dependencies": {
