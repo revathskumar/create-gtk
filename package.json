@@ -17,6 +17,13 @@
     "adwaita",
     "libadwaita"
   ],
+  "files": [
+    "README.md",
+    "LICENSE",
+    "index.js",
+    "template/",
+    "bin/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/revathskumar/create-gtk.git"
