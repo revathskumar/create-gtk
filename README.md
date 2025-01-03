@@ -5,6 +5,12 @@
 ## Usage
 
 ```sh
+npx create-gtk <project-name>
+```
+
+or
+
+```sh
 npm init gtk <project name>
 ```
 or
