@@ -12,6 +12,13 @@ class _Application extends Adw.Application {
     }
   ) {
     super(constructProperties);
+
+    const quit_action = new Gio.SimpleAction({ name: "quit" });
+    quit_action.connect("activate", (action) => {
+      this.quit();
+    });
+    this.add_action(quit_action);
+    this.set_accels_for_action("app.quit", ["<primary>q"]);
   }
 
   override vfunc_activate() {
