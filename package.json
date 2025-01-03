@@ -13,7 +13,9 @@
     "gtk",
     "gtk4",
     "gjs",
-    "gnome"
+    "gnome",
+    "adwaita",
+    "libadwaita"
   ],
   "repository": {
     "type": "git",
