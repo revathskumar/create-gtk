@@ -15,6 +15,7 @@ const updatePackageJSON = (projectDir) => {
   const packageJSON = JSON.parse(fs.readFileSync(`${projectDir}/package.json`));
   packageJSON.type = "module";
   packageJSON.main = "dist/index.js";
+  packageJSON.bin = `bin/${packageJSON.name}`;
 
   packageJSON.scripts = {
     "check:types": "tsc --noEmit",
@@ -125,4 +126,5 @@ export default function () {
   updateLicense(projectDir);
   execSync("git init");
   console.log(`${name} project created`);
+  console.log(`Run chmod +x ./bin/${name}`);
 }
