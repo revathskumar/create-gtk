@@ -10,7 +10,9 @@
 
 # production
 /build
-/dist
+/builddir
+/dist/index.js
+/run
 
 # misc
 .DS_Store

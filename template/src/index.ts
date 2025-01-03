@@ -7,7 +7,7 @@ import { MainWindow } from "./MainWindow.js";
 class _Application extends Adw.Application {
   constructor(
     constructProperties = {
-      application_id: "com.<user>.<name>",
+      application_id: "com.<user>.<project.name>",
       flags: Gio.ApplicationFlags.FLAGS_NONE,
     }
   ) {
@@ -26,7 +26,7 @@ class _Application extends Adw.Application {
     let win = this.active_window;
     if (!win) {
       win = new MainWindow({
-        title: "<name>",
+        title: "<project.name>",
         default_width: 800,
         default_height: 800,
         application: this,
@@ -46,7 +46,7 @@ const Application = GObject.registerClass(
 );
 
 /** Run the main application */
-const main = () => {
+export const main = () => {
   console.debug("Adw.VERSION_S : ", Adw.VERSION_S);
   // The proper way to run a Gtk.Application or Gio.Application is take ARGV and
   // prepend the program name to it, and pass that to run()
@@ -54,5 +54,4 @@ const main = () => {
   // app.run([System.programInvocationName, ...ARGV]);
   app.run([imports.system.programInvocationName].concat(ARGV));
 };
-
-main();
+export default main;

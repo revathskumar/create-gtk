@@ -64,8 +64,8 @@ export class IMainWindow extends Gtk.ApplicationWindow {
     if (name === "about") {
       let aboutParams = {
         transient_for: this,
-        application_name: "<name>",
-        application_icon: "com.<user>.<name>",
+        application_name: "<project.name>",
+        application_icon: "com.<user>.<project.name>",
         developer_name: "<user>",
         version: pkg.version,
         developers: ["<user>"],

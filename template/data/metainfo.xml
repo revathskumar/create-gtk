@@ -1,0 +1,29 @@
+<!-- replace content
+by generating your app specific meta info
+using https://www.freedesktop.org/software/appstream/metainfocreator/#/ -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>com.<user>.<project.name></id>
+
+  <name><project.name></name>
+  <summary></summary>
+
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+
+  <description>
+    <p>
+    </p>
+  </description>
+
+  <icon type="stock"><project.name></icon>
+
+  <categories>
+    <category>Utility</category>
+  </categories>
+
+  <provides>
+    <binary>com.<user>.<project.name></binary>
+  </provides>
+</component>

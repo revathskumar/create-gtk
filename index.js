@@ -18,7 +18,7 @@ const updatePackageJSON = (projectDir) => {
   packageJSON.bin = `bin/${packageJSON.name}`;
 
   packageJSON.scripts = {
-    "check:types": "tsc --noEmit",
+    check: "tsc --noEmit",
     build: "node esbuild.js",
   };
 
@@ -38,38 +38,14 @@ const updatePackageJSON = (projectDir) => {
   );
 };
 
-const updateNameInReadme = (projectDir, projectName) => {
-  const readme = fs.readFileSync(`${projectDir}/README.md`, "utf-8");
-  const content = readme.replace("<name>", projectName);
-
-  fs.writeFileSync(`${projectDir}/README.md`, content);
-};
-
-const updateLicense = (projectDir) => {
-  const readme = fs.readFileSync(`${projectDir}/LICENSE`, "utf-8");
-  const content = readme
-    .replace("<name>", process.env.USER)
-    .replace("<year>", new Date().getFullYear());
-
-  fs.writeFileSync(`${projectDir}/LICENSE`, content);
-};
-
-const updateSrcIndex = (projectDir, projectName) => {
-  const srcIndex = fs.readFileSync(`${projectDir}/src/index.ts`, "utf-8");
-  const content = srcIndex
-    .replace("<user>", process.env.USER)
-    .replaceAll("<name>", projectName);
-
-  fs.writeFileSync(`${projectDir}/src/index.ts`, content);
-};
-const updateMainWindow = (projectDir, projectName) => {
-  const srcIndex = fs.readFileSync(`${projectDir}/src/MainWindow.ts`, "utf-8");
+const updateFileContent = (projectDir, fileName, projectName) => {
+  const srcIndex = fs.readFileSync(`${projectDir}/${fileName}`, "utf-8");
   const content = srcIndex
     .replaceAll("<user>", process.env.USER)
-    .replaceAll("<name>", projectName)
+    .replaceAll("<project.name>", projectName)
     .replaceAll("<year>", new Date().getFullYear());
 
-  fs.writeFileSync(`${projectDir}/src/MainWindow.ts`, content);
+  fs.writeFileSync(`${projectDir}/${fileName}`, content);
 };
 
 export default function () {
@@ -85,6 +61,8 @@ export default function () {
   mkdirpSync(projectDir + "/.vscode");
   mkdirpSync(projectDir + "/src");
   mkdirpSync(projectDir + "/bin");
+  mkdirpSync(projectDir + "/data/icons", { recursive: true });
+  mkdirpSync(projectDir + "/dist");
 
   fs.copyFile(
     templateDir + "/.vscode/settings.json",
@@ -97,6 +75,9 @@ export default function () {
   const altNames = {
     gitignore: ".gitignore",
     "bin/bin": `bin/${name}`,
+    "dist/src.gresource.xml": `dist/com.${process.env.USER}.${name}.src.gresource.xml`,
+    "dist/app_id.js": `dist/com.${process.env.USER}.${name}.js`,
+    "data/metainfo.xml": `data/com.${process.env.USER}.${name}.metainfo.xml`,
   };
   [
     "README.md",
@@ -106,10 +87,21 @@ export default function () {
     ".nvmrc",
     "esbuild.js",
     "tsconfig.json",
+    "meson.build",
+
     "src/MainWindow.ts",
     "src/MenuButton.ts",
     "src/index.ts",
+
     "bin/bin",
+
+    "dist/meson.build",
+    "dist/src.gresource.xml",
+    "dist/app_id.js",
+    "dist/main.js",
+
+    "data/meson.build",
+    "data/metainfo.xml",
   ].forEach((fileName) => {
     const destFileName = altNames[fileName] || fileName;
 
@@ -120,10 +112,22 @@ export default function () {
   process.chdir(projectDir);
   execSync("npm init -y");
   updatePackageJSON(projectDir);
-  updateNameInReadme(projectDir, name);
-  updateSrcIndex(projectDir, name);
-  updateMainWindow(projectDir, name);
-  updateLicense(projectDir);
+
+  [
+    "meson.build",
+    "LICENSE",
+    "README.md",
+
+    "src/MainWindow.ts",
+    "src/index.ts",
+
+    `dist/com.${process.env.USER}.${name}.src.gresource.xml`,
+    `dist/com.${process.env.USER}.${name}.js`,
+
+    `data/com.${process.env.USER}.${name}.metainfo.xml`,
+  ].forEach((fileName) => {
+    updateFileContent(projectDir, fileName, name);
+  });
   execSync("git init");
   console.log(`${name} project created`);
   console.log(`Run chmod +x ./bin/${name}`);
