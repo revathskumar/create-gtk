@@ -24,6 +24,7 @@ npm create gtk@latest <project name>
 * generate meson build file
 * generate desktop file and metadata
 * generate basic css file
+* generate flatpak config
 
 ## License
 
