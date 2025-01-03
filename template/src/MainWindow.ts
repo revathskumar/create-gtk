@@ -28,6 +28,16 @@ export class IMainWindow extends Gtk.ApplicationWindow {
 
     container.append(new Gtk.Label({ label: "Hello World" }));
 
+    const toastOverlay = new Adw.ToastOverlay();
+    const toastBtn = new Gtk.Button({label: 'Click to Toast'});
+
+    toastBtn.connect('clicked', () => {
+      toastOverlay.add_toast(Adw.Toast.new("Hello"));
+    })
+    container.append(toastBtn);
+
+    container.append(toastOverlay);
+
     this.set_child(container);
 
     // Create a Key Event Controller for the window
